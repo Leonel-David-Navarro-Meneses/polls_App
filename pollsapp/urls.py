@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import path , include
+from django.shortcuts import render
+
 
 def hello(request):
     return HttpResponse('holap como estas')
@@ -27,7 +29,12 @@ def multiply(request, num):
         html += f'<p>{ i } * { num } = { i * num} </p>'
     return HttpResponse(html)
 
+def home(request):
+    return render(request,'home.html')
+
 urlpatterns = [
+    path('', home , name='home'),
+    path('poll/', include('poll.urls')),
     path('admin/', admin.site.urls),
     path('hello/', hello, name='hello'),
     path('table/<int:num>', multiply, name='multiply'),
