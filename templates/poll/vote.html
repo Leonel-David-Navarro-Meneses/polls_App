@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}Vota{% endblock %}
+
+{% block content %}
 <h1>{{ question.question_text }}</h1>
 
 <ul>
@@ -6,3 +11,4 @@
     <li>{{ c.choice_text }}</li>
     {% endfor %}
 </ul>
+{% endblock %}
