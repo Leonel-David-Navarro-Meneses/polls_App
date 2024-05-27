@@ -1,5 +1,5 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 
 from .models import Question
 # Create your views here.
@@ -13,11 +13,25 @@ def home(request):
     })
 
 def vote(request, q_id):
-    q = Question.objects.get(pk=q_id)
-    return render(request, 'poll/vote.html',{
-        "question": q
+    q = get_object_or_404(Question, pk=q_id)
+    if request.method == "POST":
+        choice_id = request.POST.get('choice')
+        print(choice_id)
+        choice = q.choice_set.get(pk=choice_id)
+        choice.votes += 1
+        choice.save()
+        return redirect('poll:result' , q_id)
+    return render(request, 'poll/vote.html', {
+    "question": q
     })
 
+
 def result(request, q_id):
-    pass
+    try:
+        q = Question.objects.get(pk=q_id)
+    except Question.DoesNorExist:
+        return redirect('poll:home')
+    return render(request, 'poll/result.html' ,{
+       "question": q
+    })
 

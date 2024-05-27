@@ -8,7 +8,7 @@ class Question(models.Model):
     def __str__(self):
        return self.question_text
 
-class Choise(models.Model):
+class Choice(models.Model):
     choice_text = models.CharField(max_length=100)
     Question = models.ForeignKey(Question, on_delete=models.CASCADE)
     votes = models.IntegerField(default=0)
