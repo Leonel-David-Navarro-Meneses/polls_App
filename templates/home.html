@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Encuestas{% endblock %}
+<div class="titulos">{% block title %}Encuestas{% endblock %}</div>
 
 {% block content %}
-
+<div class="inicio">
 <h1>Hola a todos</h1>
 <a href="{% url 'poll:home' %}">Vamos A las Encuestas</a>
 {% endblock %}
+</div>

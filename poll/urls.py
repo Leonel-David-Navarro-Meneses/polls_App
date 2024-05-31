@@ -9,5 +9,7 @@ urlpatterns = [
    #localhost:8000/poll/1/vote/
    path('<int:q_id>/vote/', views.vote, name='vote'),
    #localhost:8000/poll/1/result
-   path('<int:q_id>/result/', views.result, name='result')
+   path('<int:q_id>/result/', views.result, name='result'),
+   path('<int:q_id>/vote/', views.vote, name='vote'),
+   path('<int:q_id>/results/', views.result, name='result'),
 ]
